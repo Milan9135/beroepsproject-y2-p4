@@ -1,0 +1,24 @@
+.tools {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.tools h2 {
+    margin-bottom: 20px;
+}
+
+.tools .tool {
+    margin-bottom: 20px;
+}
+
+.tools .tool h3 {
+    margin-bottom: 10px;
+}
+
+.tools .tool ul {
+    list-style: none;
+}
+
+.tools .tool ul li {
+    margin: 5px 0;
+}
