@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tools</title>
+    <title>Web-Essentials</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="tools.css">
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
     <header>
@@ -26,41 +26,21 @@
             </div>
         </div>
     </header>
+
     <main>
-        <section class="tools">
-            <div class="container">
-                <h2>Our Tools</h2>
-                <div class="tool">
-                    <h3>Calculator</h3>
-                    <p>Accurate and easy-to-use calculator for all your math needs.</p>
-                    <ul>
-                        <li>Basic and advanced functions</li>
-                        <li>Instantanious response</li>
-                    </ul>
-                    <a href="./calculator.php">Try out</a>
-                </div>
-                <div class="tool">
-                    <h3>Calendar</h3>
-                    <p>Stay organized and never miss an appointment with our calendar.</p>
-                    <ul>
-                        <li>Daily, weekly, monthly views</li>
-                        <li>Event reminders</li>
-                    </ul>
-                    <a href="./schedule.php">Try out</a>
-                </div>
-                <div class="tool">
-                    <h3>To-Do List</h3>
-                    <p>Efficiently manage your tasks and to-dos with our intuitive list.</p>
-                    <ul>
-                        <li>Task prioritization</li>
-                        <li>Deadlines</li>
-                        <li>Progress tracking</li>
-                    </ul>
-                    <a href="./todo.php">Try out</a>
-                </div>
-            </div>
-        </section>
+        <legend>
+            <form method="POST">
+                <label for="username">Naam</label>
+                <input type="text" name="username" id="username" placeholder="username">
+
+                <label for="password">Password</label>
+                <input type="text" name="password" id="password" placeholder="password">
+
+                <button value="submit">Log In</button>
+            </form>
+        </legend>
     </main>
+
     <footer>
         <div class="container">
             <div class="about">
