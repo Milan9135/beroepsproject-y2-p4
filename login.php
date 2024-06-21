@@ -10,7 +10,7 @@
 
 <?php
 
-    include(....);
+    include "db.php";
     session_start();
 
     //check of de user inputdata in het formulier heeft gedaan.
@@ -36,7 +36,7 @@
                 $_SESSION['id'] = $id;
                 echo 'welkom, ' . htmlspecialchars($_SESSION['username']);
             } else {
-                echo 'incorrect naam of wachtwoord'
+                echo 'incorrect naam of wachtwoord';
             }
         } else {
             echo 'incorrect naam of wachtwoord';
