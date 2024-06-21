@@ -7,6 +7,45 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
 </head>
+
+<?php
+
+    include(....);
+    session_start();
+
+    //check of de user inputdata in het formulier heeft gedaan.
+    if (!isset($_POST['username'], $_POST['password'])) {
+        print('vul alsjeblieft iets in');
+    }
+
+    if ($stmt = $con->prepare('SELECT id, password FROM User WHERE username = ?')) {
+        $stmt->bind_param('s', $_POST['username']);
+        $stmt->execute();
+
+        //sla het resultaat op om te checken of het bestaat in de database
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($id, $password);
+            $stmt->fetch();
+
+            if ($_POST['password'] === $password) {
+                session_regenerate_id();
+                $_SESSION['loggedin'] = TRUE;
+                $_SESSION['username'] = $_POST['username'];
+                $_SESSION['id'] = $id;
+                echo 'welkom, ' . htmlspecialchars($_SESSION['username']);
+            } else {
+                echo 'incorrect naam of wachtwoord'
+            }
+        } else {
+            echo 'incorrect naam of wachtwoord';
+        }
+
+        $stmt->close();
+    }
+?>
+
 <body>
     <header>
         <div class="container">
@@ -17,8 +56,7 @@
                     <li><a href="./tools.html">Tools</a></li>
                     <li><a href="./login.html">Login</a></li>
                     <li><a href="#">Sign Up</a></li>
-                    <!-- make logout appear and login dissapear when logged in -->
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="./logout.php">Logout</a></li>
                 </ul>
             </nav>
             <div class="contact-info">
@@ -76,30 +114,7 @@
     </footer>
     
     <?php
-        session_start(); // Start the session
-        
-        // Dummy data for illustration (Replace this with your database query)
-        
-        
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-        
-            // Replace the following if condition with your database query for user authentication
-            if ($username === $valid_username && $password === $valid_password) {
-                // Set session variables
-                $_SESSION['username'] = $username;
-                $_SESSION['loggedin'] = true;
-        
-                // Redirect to a protected page
-                header("index.html");
-                exit();
-            } else {
-                // Login failed
-                echo "F";
-            }
-        }
-        ?>
+
     ?>
 </body>
 </html>
