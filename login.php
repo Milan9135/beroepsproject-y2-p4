@@ -74,5 +74,32 @@
             </div>
         </div>
     </footer>
+    
+    <?php
+        session_start(); // Start the session
+        
+        // Dummy data for illustration (Replace this with your database query)
+        
+        
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+        
+            // Replace the following if condition with your database query for user authentication
+            if ($username === $valid_username && $password === $valid_password) {
+                // Set session variables
+                $_SESSION['username'] = $username;
+                $_SESSION['loggedin'] = true;
+        
+                // Redirect to a protected page
+                header("index.html");
+                exit();
+            } else {
+                // Login failed
+                echo "F";
+            }
+        }
+        ?>
+    ?>
 </body>
 </html>
