@@ -1,0 +1,109 @@
+/* To-Do List Page Styles */
+
+/* General Styles for the To-Do List */
+.todo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.todo-container h1 {
+    color: #333;
+    margin-top: 20px;
+}
+
+.todo-container form {
+    margin: 5px;
+}
+
+.todo-container input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 300px;
+}
+
+.todo-container button[type="submit"],
+.todo-container button[type="button"] {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.todo-container button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+}
+
+.todo-container button[type="button"] {
+    background-color: #007bff;
+    color: white;
+}
+
+/* To-Do List Styles */
+.todo-container ul {
+    list-style-type: none;
+    padding: 0;
+    min-width: 350px;
+    max-width: 1000px;
+}
+
+.todo-container li {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 4px;
+}
+
+.todo-container li span.crossed {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.todo-container li form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.todo-container .task-buttons {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.todo-container .task-buttons button {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.todo-container .task-buttons button[name="delete"] {
+    background-color: #dc3545;
+    color: white;
+}
+
+.todo-container .task-buttons button[name="edit"] {
+    background-color: #ffc107;
+    color: white;
+}
+
+.todo-container .task-buttons button[name="toggle"] {
+    background-color: #17a2b8;
+    color: white;
+}
