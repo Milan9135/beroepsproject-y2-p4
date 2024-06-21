@@ -3,8 +3,8 @@
 
 <head>
     <title>Calculator</title>
-    <link rel="stylesheet" href="calculator.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/calculator.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>

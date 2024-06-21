@@ -3,8 +3,8 @@
 
 <head>
     <title>To-Do List</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="todo.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/todo.css">
 </head>
 
 <body>
