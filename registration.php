@@ -35,8 +35,8 @@ if (isset($_POST["submit"])) {
         $db = new Database("bp24");
         
         // Prepare and execute the statement with the provided parameters
-        $name = 'name';
-        $password = 'password'; // You should hash the password before storing it
+        $name = $_POST["name"];
+        $password = $_POST["password"];
         
         $stmt = $db->run($sql, [$name, $password]);
         
