@@ -11,39 +11,43 @@
 <?php
 
     include "db.php";
-    session_start();
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //check of de user inputdata in het formulier heeft gedaan.
-    if (!isset($_POST['username'], $_POST['password'])) {
-        print('vul alsjeblieft iets in');
-    }
+        if (!isset($_POST['username'], $_POST['password'])) {
+            echo('vul alsjeblieft iets in');
 
-    if ($stmt = $con->prepare('SELECT id, password FROM User WHERE username = ?')) {
-        $stmt->bind_param('s', $_POST['username']);
-        $stmt->execute();
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $sql = "INSERT INTO Users (username, password) VALUES (?, ?)";
+            $args = [$username, $password];
 
-        //sla het resultaat op om te checken of het bestaat in de database
-        $stmt->store_result();
+            $result = $db->run($sql, $args);
 
-        if ($stmt->num_rows > 0) {
-            $stmt->bind_result($id, $password);
-            $stmt->fetch();
 
-            if ($_POST['password'] === $password) {
-                session_regenerate_id();
-                $_SESSION['loggedin'] = TRUE;
-                $_SESSION['username'] = $_POST['username'];
-                $_SESSION['id'] = $id;
-                echo 'welkom, ' . htmlspecialchars($_SESSION['username']);
-            } else {
-                echo 'incorrect naam of wachtwoord';
-            }
-        } else {
-            echo 'incorrect naam of wachtwoord';
+                
+                //sla het resultaat op om te checken of het bestaat in de database
+                $stmt->store_result();
+
+                if ($stmt->num_rows > 0) {
+                    $stmt->bind_result($id, $password);
+                    $stmt->fetch();
+
+                    if ($_POST['password'] === $password) {
+                        session_regenerate_id();
+                        $_SESSION['loggedin'] = TRUE;
+                        $_SESSION['username'] = $_POST['username'];
+                        $_SESSION['id'] = $id;
+                        echo 'welkom, ' . htmlspecialchars($_SESSION['username']);
+                        } else {
+                            echo 'incorrect naam of wachtwoord';
+                        }
+                    } else {
+                    echo 'incorrect naam of wachtwoord';
+                }
         }
-
-        $stmt->close();
     }
+    
 ?>
 
 <body>
@@ -65,8 +69,6 @@
         </div>
     </header>
 
-    <main>
-        <legend>
             <form method="POST">
                 <label for="username">Naam</label>
                 <input type="text" name="username" id="username" placeholder="username">
@@ -76,8 +78,6 @@
 
                 <button value="submit">Log In</button>
             </form>
-        </legend>
-    </main>
 
     <footer>
         <div class="container">
