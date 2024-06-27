@@ -7,13 +7,18 @@
     <link rel="stylesheet" href="css/homepage.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
+<?php
+
+?> 
+
 <body>
     <header>
         <div class="container">
             <div class="logo">Web-Essentials</div>
             <nav>
                 <ul>
-                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./index.php">Home</a></li>
                     <li><a href="./tools.html">Tools</a></li>
                     <li><a href="./login.php">Login</a></li>
                     <li><a href="./registration.php">Sign Up</a></li>

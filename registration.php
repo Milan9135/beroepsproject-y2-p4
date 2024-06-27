@@ -35,8 +35,7 @@ if (isset($_POST["submit"])) {
         $db = new Database("bp24");
         
         // Prepare and execute the statement with the provided parameters
-        $name = $_POST["name"];
-        $password = $_POST["password"];
+        $password = password_hash($password, PASSWORD_BCRYPT);
         
         $stmt = $db->run($sql, [$name, $password]);
         
@@ -56,10 +55,10 @@ if (isset($_POST["submit"])) {
             <div class="logo">Web-Essentials</div>
             <nav>
                 <ul>
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./tools.html">Tools</a></li>
-                    <li><a href="./login.html">Login</a></li>
-                    <li><a href="#">Sign Up</a></li>
+                    <li><a href="./index.php">Home</a></li>
+                    <li><a href="./tools.php">Tools</a></li>
+                    <li><a href="./login.php">Login</a></li>
+                    <li><a href="./registration.php">Sign Up</a></li>
                     <li><a href="./logout.php">Logout</a></li>
                 </ul>
             </nav>

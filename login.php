@@ -10,43 +10,29 @@
 
 <?php
 
-    include "db.php";
+if (isset($_POST["login"])) {
+    $name = $_POST["name"];
+    $password = $_POST["password"];
+    require_once "db.php"; // Assuming this file contains your Database class and initializes $db
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //check of de user inputdata in het formulier heeft gedaan.
-        if (!isset($_POST['username'], $_POST['password'])) {
-            echo('vul alsjeblieft iets in');
+    // Use the run method of the Database class to safely execute the query
+    $sql = "SELECT * FROM users WHERE username = :name";
+    $stmt = $db->run($sql, ['name' => $name]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $sql = "INSERT INTO Users (username, password) VALUES (?, ?)";
-            $args = [$username, $password];
-
-            $result = $db->run($sql, $args);
-
-
-                
-                //sla het resultaat op om te checken of het bestaat in de database
-                $stmt->store_result();
-
-                if ($stmt->num_rows > 0) {
-                    $stmt->bind_result($id, $password);
-                    $stmt->fetch();
-
-                    if ($_POST['password'] === $password) {
-                        session_regenerate_id();
-                        $_SESSION['loggedin'] = TRUE;
-                        $_SESSION['username'] = $_POST['username'];
-                        $_SESSION['id'] = $id;
-                        echo 'welkom, ' . htmlspecialchars($_SESSION['username']);
-                        } else {
-                            echo 'incorrect naam of wachtwoord';
-                        }
-                    } else {
-                    echo 'incorrect naam of wachtwoord';
-                }
+    if ($user) {
+        if (password_verify($password, $user["password"])) {
+            $_SESSION["username"] = $user; // Store user details in the session
+            header("Location: index.php"); // Proper redirection
+            echo"je bent succesvol ingelogd";
+            exit(); // Ensure no further code is executed
+        } else {
+            echo "<div class='error'>Incorrect password</div>";
         }
+    } else {
+        echo "<div class='error'>Naam is niet herkent</div>";
     }
+}
     
 ?>
 
@@ -56,10 +42,10 @@
             <div class="logo">Web-Essentials</div>
             <nav>
                 <ul>
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./tools.html">Tools</a></li>
-                    <li><a href="./login.html">Login</a></li>
-                    <li><a href="#">Sign Up</a></li>
+                    <li><a href="./index.php">Home</a></li>
+                    <li><a href="./tools.php">Tools</a></li>
+                    <li><a href="./login.php">Login</a></li>
+                    <li><a href="./registration.php">Sign Up</a></li>
                     <li><a href="./logout.php">Logout</a></li>
                 </ul>
             </nav>
@@ -69,15 +55,17 @@
         </div>
     </header>
 
-            <form method="POST">
-                <label for="username">Naam</label>
-                <input type="text" name="username" id="username" placeholder="username">
+        <main>
+            <form action="login.php" method="POST">
+                <label for="name">Naam</label>
+                <input type="text" name="name" placeholder="username">
 
                 <label for="password">Password</label>
-                <input type="text" name="password" id="password" placeholder="password">
+                <input type="text" name="password" placeholder="password">
 
-                <button value="submit">Log In</button>
+                <input type="submit" value="login" name="login">
             </form>
+        </main>
 
     <footer>
         <div class="container">
