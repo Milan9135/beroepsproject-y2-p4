@@ -15,8 +15,8 @@
                 <ul>
                     <li><a href="./index.html">Home</a></li>
                     <li><a href="./tools.html">Tools</a></li>
-                    <li><a href="./login.html">Login</a></li>
-                    <li><a href="#">Sign Up</a></li>
+                    <li><a href="./login.php">Login</a></li>
+                    <li><a href="./registration.php">Sign Up</a></li>
                     <!-- make logout appear and login disappear when logged in -->
                     <li><a href="#">Logout</a></li>
                 </ul>
