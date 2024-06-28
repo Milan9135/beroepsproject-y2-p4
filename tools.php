@@ -17,8 +17,9 @@
                     <li><a href="./tools.php">Tools</a></li>
                     <li><a href="./login.php">Login</a></li>
                     <li><a href=".registration.php">Sign Up</a></li>
-                    <!-- make logout appear and login dissapear when logged in -->
-                    <li><a href="logout.php">Logout</a></li>
+                    <?php if (isset($_SESSION['login']) && $_SESSION['login'] == true): ?>
+                        <li><a href="./logout.php">Logout</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
             <div class="contact-info">
