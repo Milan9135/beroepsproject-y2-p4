@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registreer</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/form.css">
 </head>
 
 <?php
@@ -31,19 +32,19 @@ if (isset($_POST["submit"])) {
         require_once "db.php";
         $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
 
-        // Create an instance of the Database class
+        //instantie nieuwe db
         $db = new Database("bp24");
         
-        // Prepare and execute the statement with the provided parameters
+        //hashen van password in db
         $password = password_hash($password, PASSWORD_BCRYPT);
         
         $stmt = $db->run($sql, [$name, $password]);
         
-        // Check if the statement executed successfully
+        //check van de status
         if ($stmt) {
-            echo "<div class='goed'>registratie compleet</div>";
+            $message = "<div class='goed'>registratie compleet</div>";
         } else {
-            echo "<div class='fout'>Registratie mislukt</div>";
+            $message = "<div class='fout'>Registratie mislukt</div>";
         }
     }
 }
@@ -69,8 +70,9 @@ if (isset($_POST["submit"])) {
     </header>
 
     <main>
-        <fieldset>
-            <form action="registration.php" method="POST">
+        <div class="form">
+        <form action="registration.php" method="POST">
+            <fieldset>
                 <legend>Registreer</legend>
 
                 <label for="name">Naam</label>
@@ -80,8 +82,12 @@ if (isset($_POST["submit"])) {
                 <input type="text" name="password">
 
                 <input type="submit" value="Registreer" name="submit">
-            </form>
-        </fieldset>
+
+                <?php if (!empty($message)) { echo $message; } ?>
+            </fieldset>
+
+        </form>
+        </div>
     </main>
 
     <footer>

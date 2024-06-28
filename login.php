@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web-Essentials</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/form.css">
 </head>
 
 <?php
@@ -27,10 +27,10 @@ if (isset($_POST["login"])) {
             echo"je bent succesvol ingelogd";
             exit(); // Ensure no further code is executed
         } else {
-            echo "<div class='error'>Incorrect password</div>";
+            $error = "Incorrect password";
         }
     } else {
-        echo "<div class='error'>Naam is niet herkent</div>";
+        $error = "name is not found";
     }
 }
     
@@ -55,17 +55,26 @@ if (isset($_POST["login"])) {
         </div>
     </header>
 
-        <main>
-            <form action="login.php" method="POST">
+    <main>
+        <div class="form">
+        <form action="login.php" method="POST">
+            <fieldset>
+                <legend>Login</legend>
                 <label for="name">Naam</label>
-                <input type="text" name="name" placeholder="username">
+                <input type="text" name="name" placeholder="username" required>
 
                 <label for="password">Password</label>
-                <input type="text" name="password" placeholder="password">
+                <input type="password" name="password" placeholder="password" required>
 
                 <input type="submit" value="login" name="login">
-            </form>
-        </main>
+
+                <?php if (!empty($error)) { ?>
+                    <div class="error"><?php echo $error; ?></div>
+                <?php } ?>
+            </fieldset>
+        </form>
+        </div>
+    </main>
 
     <footer>
         <div class="container">
