@@ -8,7 +8,7 @@ body, h1, form {
 main {
     text-align: center;
     margin-top: 50px; /* Adjust margin-top as needed */
-    min-height: 50vh;
+    min-height: 60vh;
 }
 
 /* Style the calculator form */

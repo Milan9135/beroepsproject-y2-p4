@@ -81,7 +81,7 @@ if (isset($_POST["submit"])) {
                 <input type="text" name="name">
                 
                 <label for="password">Wachtwoord</label>
-                <input type="text" name="password">
+                <input type="password" name="password">
 
                 <input type="submit" value="Registreer" name="submit">
 
