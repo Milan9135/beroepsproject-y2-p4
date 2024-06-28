@@ -1,11 +1,10 @@
 <?php
-    // Unset all session variables
-$_SESSION = array();
+    session_start();
 
-// Destroy the session
-session_destroy();
+    $_SESSION = array();
 
-// Redirect to the login page
-header("index.php");
-exit();
+    session_destroy();
+    
+    header("Location: ./login.php");
+    exit();
 ?>

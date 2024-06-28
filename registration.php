@@ -42,9 +42,9 @@ if (isset($_POST["submit"])) {
         
         //check van de status
         if ($stmt) {
-            $message = "<div class='goed'>registratie compleet</div>";
+            $error = "<div class='goed'>registratie compleet</div>";
         } else {
-            $message = "<div class='fout'>Registratie mislukt</div>";
+            $error = "<div class='fout'>Registratie mislukt</div>";
         }
     }
 }
@@ -57,10 +57,12 @@ if (isset($_POST["submit"])) {
             <nav>
                 <ul>
                     <li><a href="./index.php">Home</a></li>
-                    <li><a href="./tools.php">Tools</a></li>
+                    <li><a href="./tools.html">Tools</a></li>
                     <li><a href="./login.php">Login</a></li>
                     <li><a href="./registration.php">Sign Up</a></li>
-                    <li><a href="./logout.php">Logout</a></li>
+                    <?php if (isset($_SESSION['login']) && $_SESSION['login'] == true): ?>
+                        <li><a href="./logout.php">Logout</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
             <div class="contact-info">
