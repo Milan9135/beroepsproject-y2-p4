@@ -43,7 +43,7 @@ if (isset($_POST["login"])) {
             <nav>
                 <ul>
                     <li><a href="./index.php">Home</a></li>
-                    <li><a href="./tools.html">Tools</a></li>
+                    <li><a href="./tools.php">Tools</a></li>
                     <li><a href="./login.php">Login</a></li>
                     <li><a href="./registration.php">Sign Up</a></li>
                     <?php if (isset($_SESSION['login']) && $_SESSION['login'] == true): ?>
